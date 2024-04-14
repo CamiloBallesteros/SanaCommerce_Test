@@ -1,0 +1,6 @@
+@SanaCommerce_Test.Server_HostAddress = http://localhost:5108
+
+GET {{SanaCommerce_Test.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
