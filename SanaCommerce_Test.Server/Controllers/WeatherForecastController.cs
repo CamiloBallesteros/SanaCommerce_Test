@@ -23,9 +23,9 @@ namespace SanaCommerce_Test.Server.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Category> Get()
+        public IEnumerable<Product> Get()
         {
-            return _context.Categories.ToList();
+            return _context.Products.ToList();
         }
     }
 }

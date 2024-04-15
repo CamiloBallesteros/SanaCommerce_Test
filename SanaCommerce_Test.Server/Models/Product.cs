@@ -25,6 +25,12 @@ namespace SanaCommerce_Test.Server.Models
         public decimal Price { get; set; }
         public int Stock { get; set; }
 
+        [MaxLength(100, ErrorMessage = "The Brand must be less than 100 characters")]
+        public string? Brand { get; set; }
+
+        [DataType(DataType.Url)]
+        public string? ImgURL { get; set; }
+
         public int CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]
