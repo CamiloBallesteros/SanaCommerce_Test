@@ -22,8 +22,7 @@ namespace SanaCommerce_Test.Server.Controllers
         [HttpGet]
         public IEnumerable<Product> Get()
         {
-            var products = _context.Products.ToList();
-            return products;
+            return _context.Products.ToList();
         }
 
         // GET api/<ProductsController>/5
