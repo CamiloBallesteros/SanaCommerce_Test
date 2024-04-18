@@ -158,5 +158,5 @@ Project Link: [[https://github.com/github_username/repo_name](https://github.com
 [React-url]: https://reactjs.org/
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
-[DotNet.com]: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREUY3bqi6f5DJ-dGL0zumN3TsKEnyPMt9BZ8i9nwi6PQ&
+[DotNet.com]: https://source.dot.net/favicon.ico
 [DotNet-url]: https://dotnet.microsoft.com/es-es/
