@@ -1,0 +1,24 @@
+#cartListHeaders b {
+    font-size: 22px;
+    align-self: center;
+}
+
+.imgCol{
+    width: 25%;
+}
+
+.productCol {
+    width: 25%;
+}
+
+.qtyCol {
+    width: 20%;
+}
+
+.priceCol {
+    width: 15%;
+}
+
+.subtotalCol {
+    width: 15%;
+}

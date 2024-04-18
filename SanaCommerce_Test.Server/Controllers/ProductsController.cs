@@ -6,8 +6,8 @@ using SanaCommerce_Test.Server.Models;
 
 namespace SanaCommerce_Test.Server.Controllers
 {
-    [Route("[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;

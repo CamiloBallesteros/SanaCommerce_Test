@@ -34,10 +34,17 @@ namespace SanaCommerce_Test.Server.Data
             });
 
             modelBuilder.Entity<Order_Detail>(entity => {
+                entity.ToTable("Order_Details", tb => tb.HasTrigger("trgOrderCreated"));
+
                 entity.Property(p => p.UnitPrice)
                     .HasColumnType("money");
                 entity.Property(p => p.SubTotal)
                     .HasColumnType("money");
+            });
+
+            modelBuilder.Entity<Customer>(entity => {
+                entity.Property(p => p.PasswordHash)
+                    .HasColumnType("binary");
             });
         }
     }

@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SanaCommerce_Test.Server.Models
 {
@@ -18,6 +21,13 @@ namespace SanaCommerce_Test.Server.Models
         [EmailAddress]
         public string Email { get; set; }
         public string? Address { get; set; }
+
+        [MaxLength(150)]
+        public string PasswordHash { get; set; }
+
+        [NotMapped]
+        [PasswordPropertyText]
+        public string Password { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
     }

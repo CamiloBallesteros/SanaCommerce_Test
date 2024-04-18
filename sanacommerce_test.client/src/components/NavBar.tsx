@@ -1,3 +1,5 @@
+
+
 function NavBar() {
   return (
       <nav className="navbar navbar-expand-lg">
@@ -21,7 +23,7 @@ function NavBar() {
                       <a className="nav-link" href="/profile">Profile</a>
                   </li>
                   <li className="nav-item">
-                      <a className="nav-link" href="#">Cart</a>
+                      <a className="nav-link" href="/cart">Cart</a>
                   </li>
               </ul>
           </div>
