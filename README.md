@@ -67,17 +67,17 @@ The proyect was bilt using Code-First Migrations so you can configure the migrat
 
 ### Prerequisites
 
-# Required:
-NodeJs Version: v20.12.2
-NPM Version: 10.5.0
+## Required:
+- NodeJs Version: v20.12.2
+- NPM Version: 10.5.0
 
-# Nuget Packages:
+## Nuget Packages:
 - Microsoft.AspNetCore.SpaProxy
 - Microsoft.EntityFrameworkCore.SqlServer
 - Microsoft.EntityFrameworkCore.Tools
 - Swashbuckle.AspNetCore
 
-# NPM Packages:
+## NPM Packages:
 - react-bootstrap
 - react-dom
 - react-paginate
