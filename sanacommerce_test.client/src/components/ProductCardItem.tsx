@@ -69,9 +69,9 @@ const ProductCardItem = ({ id, code, title, description, price, stock, brand, im
     }
 
     return (
-        <div className="card mx-2 mb-3 d-flex flex-wrap flex-row align-content-center" style={{ width: "100%", minHeight: "200px" }} >
-            <div className="col-md-3 align-content-center">
-                <img src={imgURL} className="img-fluid rounded-start" alt={title} />
+        <div className="card mx-2 mb-3 d-flex flex-wrap flex-row align-content-center" style={{ width: "100%", height: "150px" }} >
+            <div className="col-md-3 d-flex justify-content-center align-items-center h-100 p-2">
+                <img src={imgURL} className="img-fluid rounded-start h-100 w-100" alt={title} />
             </div>
             <div className="col-md-7 px-2">
                 <div className="card-body">
@@ -86,7 +86,7 @@ const ProductCardItem = ({ id, code, title, description, price, stock, brand, im
                 </div>
             </div>
             <div className="col-md-2 d-flex flex-column justify-content-evenly px-2">
-                <b className="card-text" style={{ fontSize: "20px" }}>$ {price}</b>
+                <b className="card-text align-self-center" style={{ fontSize: "22px" }}>Price: $ {price}</b>
                 {newItem && stock !== 0
                     ? <button className="btn btn-success" onClick={addToCart}>Add to Cart</button>
                     : <div className="d-flex">

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SanaCommerce_Test.Server.Data;
 using SanaCommerce_Test.Server.Models;
 
@@ -20,33 +21,35 @@ namespace SanaCommerce_Test.Server.Controllers
 
         // GET: api/<ProductsController>
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public async Task<IActionResult> GetList()
         {
-            return _context.Products.ToList();
+            try
+            {
+                return StatusCode(StatusCodes.Status200OK, await _context.Products.ToListAsync());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
 
         // GET api/<ProductsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> GetProduct(int id)
         {
-            return "value";
-        }
-
-        // POST api/<ProductsController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
+            try
+            {
+                return StatusCode(StatusCodes.Status200OK, await _context.Products.FirstOrDefaultAsync(o => o.Id == id));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
 
         // PUT api/<ProductsController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<ProductsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
         {
         }
     }

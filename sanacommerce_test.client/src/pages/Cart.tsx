@@ -2,31 +2,34 @@ import { useEffect, useState } from "react";
 import CartDataModel from "../interfaces/CartDataModel";
 import Order_Details from "../interfaces/OrderDetailsModel";
 import { useSessionStorage } from "../interfaces/SessionStorage";
-import Order_Data from "../interfaces/OrderDataModel";
 import '../styles/cart.css';
 import CartItem from "../components/CartItem";
 import OrderDetailsDTO from "../interfaces/OrderDetailsDTO";
 
 function Cart() {
-    const [cartList, setCartList] = useState<Array<Order_Details>>();
+    const [cartList, setCartList] = useState<Array<Order_Details>>(new Array<Order_Details>(0));
     const [orderTotal, setOrderTotal] = useState<number>(0);
-    const { removeSessionItem, getSessionItem } = useSessionStorage('cartData');
+    const [isLogged, setLogged] = useState(false);
+
+    const { setSessionItem, getSessionItem } = useSessionStorage('cartData');
 
     useEffect(() => {
-        var cardData = getSessionItem() as CartDataModel;
-        if (cardData.orderDetails !== undefined) {
-            setCartList(cardData.orderDetails);
-            var total = cardData.orderDetails.reduce((total, current) => total + current.subtotal, 0);
+        var cartData = getSessionItem() as CartDataModel;
+        if (cartData.orderDetails !== undefined && cartData.orderDetails.length > 0) {
+            setCartList(cartData.orderDetails);
+            var total = cartData.orderDetails.reduce((total, current) => total + current.subtotal, 0);
             setOrderTotal(total);
         }
+        if (cartData.customerId !== undefined && cartData.customerId > 0)
+            setLogged(true);
     }, []);
 
     const processOrder = async(e) => {
         e.preventDefault();
 
-        const cardData = getSessionItem() as CartDataModel;
-        if (cardData.orderDetails !== undefined && cardData.customerId !== 0) {
-            var OrderDetailsDTO = cardData.orderDetails.map<OrderDetailsDTO>(function (d)
+        const cartData = getSessionItem() as CartDataModel;
+        if (cartData.customerId !== 0) {
+            var OrderDetailsDTO = cartData.orderDetails?.map<OrderDetailsDTO>(function (d)
             {
                 return {
                     productId: d.productId,
@@ -36,7 +39,7 @@ function Cart() {
                     subtotal: d.subtotal
                 } as OrderDetailsDTO
             });
-            const response = await fetch("api/orders/ProcessOrder?customerId=" + cardData.customerId, {
+            const response = await fetch("api/orders/ProcessOrder?customerId=" + cartData.customerId, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
@@ -45,7 +48,13 @@ function Cart() {
             });
 
             if (response.ok) {
-                removeSessionItem();
+                cartData.orderDetails = new Array<Order_Details>(0);
+                setSessionItem(cartData);
+                alert("Your order was successfully processed");
+            }
+            else {
+                var msg = await response.json();
+                alert("Error: " + msg);
             }
         }
     };
@@ -68,8 +77,8 @@ function Cart() {
                 <h2>Shopping Cart</h2>
             </div>
             <hr />
-            <div className="d-flex flex-wrap">
-                <div className="col-9 mt-2">
+            <div className="d-flex">
+                <div className="col-9 mt-2 me-2 rounded p-3" style={{ backgroundColor: "white" }}>
                     <div className="w-100">
                         <div className="d-flex justify-content-end gap-2" id="cartListHeaders">
                             <b className="productCol">Product</b>
@@ -80,7 +89,7 @@ function Cart() {
                         {cart}
                     </div>
                 </div>
-                <div className="col-3 mt-2">
+                <div className="col-3 mt-2 ">
                     <div className="card mx-2 p-4">
                         <h5 className="fw-600 mb-2">Order Summary</h5>
                         <div className="d-flex justify-content-between">
@@ -93,13 +102,21 @@ function Cart() {
                         </div>
                         <hr />
                         <div className="d-flex justify-content-between">
-                            <b className="fs-5">Total:</b>
-                            <b className="fs-5 fw-600 text-secondary">$ {orderTotal}</b>
+                            <b className="fs-4">Total:</b>
+                            <b className="fs-4 fw-700 text-secondary">$ {orderTotal}</b>
                         </div>
                         <hr />
-                        <form onSubmit={processOrder} className="d-flex justify-content-center">
-                            <button className="btn btn-success w-75 fs-5" type="submit">Process Order</button>
-                        </form>
+                        {cartList.length > 0
+                            ? isLogged 
+                                ? <form onSubmit={processOrder} className="d-flex justify-content-center">
+                                    <button className="btn btn-success w-75 fs-5" type="submit">Process Order</button>
+                                </form>
+                                : <div className="d-flex flex-column align-items-center">
+                                    <p>You need to be Log in to proceed with the Order</p>
+                                    <a className="btn btn-outline-primary w-75 fs-5" href="/">Go To Log In</a>
+                                  </div>
+                            : <a className="btn btn-outline-success align-self-center w-75 fs-5" href="/catalog">Go To Catalog</a>
+                        }
                     </div>
                 </div>
             </div>

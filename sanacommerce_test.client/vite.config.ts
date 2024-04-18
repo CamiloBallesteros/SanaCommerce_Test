@@ -50,6 +50,10 @@ export default defineConfig({
             '^/api/orders': {
                 target,
                 secure: false
+            },
+            '^/api/customers': {
+                target,
+                secure: false
             }
         },
         port: 5173,

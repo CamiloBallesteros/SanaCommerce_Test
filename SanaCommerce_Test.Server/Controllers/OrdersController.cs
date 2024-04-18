@@ -24,7 +24,7 @@ namespace SanaCommerce_Test.Server.Controllers
         {
             try
             {
-                return StatusCode(StatusCodes.Status200OK, _context.Orders.ToListAsync());
+                return StatusCode(StatusCodes.Status200OK, await _context.Orders.ToListAsync());
             }
             catch (Exception ex)
             {
@@ -34,9 +34,16 @@ namespace SanaCommerce_Test.Server.Controllers
 
         // GET api/<OrdersController>/5
         [HttpGet("{id}")]
-        public Order Get(int id)
+        public async Task<IActionResult> GetOrder(int id)
         {
-            return _context.Orders.FirstOrDefault(o => o.Id == id) ?? new Order();
+            try
+            {
+                return StatusCode(StatusCodes.Status200OK, await _context.Orders.FirstOrDefaultAsync(o => o.Id == id));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
 
         // POST api/<OrdersController>
