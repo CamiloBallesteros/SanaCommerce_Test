@@ -1,20 +1,8 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
-<a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/CamiloBallesteros/SanaCommerce_Test">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://source.dot.net/favicon.ico" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">SanaCommerce_Test</h3>
@@ -56,8 +44,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 This is a React Proyect built using the Visual Studio Init Template for React / ASP.Net Applications
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -81,23 +67,32 @@ The proyect was bilt using Code-First Migrations so you can configure the migrat
 
 ### Prerequisites
 
-Need Node and NPM installed for run this project
+# Required:
+NodeJs Version: v20.12.2
+NPM Version: 10.5.0
+
+# Nuget Packages:
+- Microsoft.AspNetCore.SpaProxy
+- Microsoft.EntityFrameworkCore.SqlServer
+- Microsoft.EntityFrameworkCore.Tools
+- Swashbuckle.AspNetCore
+
+# NPM Packages:
+- react-bootstrap
+- react-dom
+- react-paginate
+- react-router-dom
+- vite
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
+1. After getting the correct versions of node and npm then Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+2. Change the Appsettings.json, in the ConnectionStrings section have to put the corresponding string connection to the DataBase server
+3. Run the scripts of the Database to get the table, SPs, triggers
+4. Run the project on the Visual Studio environment, that triggers the React application and the .Net Backend to be used.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -158,5 +153,5 @@ Project Link: [[https://github.com/github_username/repo_name](https://github.com
 [React-url]: https://reactjs.org/
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
-[DotNet.com]: https://source.dot.net/favicon.ico
+[DotNet.com]: https://img.shields.io/badge/.Net-DotNet-purple
 [DotNet-url]: https://dotnet.microsoft.com/es-es/
