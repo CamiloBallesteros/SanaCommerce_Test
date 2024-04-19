@@ -9,10 +9,11 @@ import Layout from './containers/Layout.tsx';
 import Home from './pages/Home.tsx';
 import Catalog from './pages/Catalog.tsx';
 import NotFound from './pages/NotFound.tsx';
-import ProfileManagement from './pages/ProfileManagement.tsx';
+import ProfileManagement from './pages/Register.tsx';
 import About from './pages/About.tsx';
 import Contact from './pages/Contact.tsx';
 import Cart from './pages/Cart.tsx';
+import Register from './pages/Register.tsx';
 
 
 
@@ -24,9 +25,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                     <Route path="/" element={<Home />} />
                     <Route path="about" element={<About />} />
                     <Route path="contact" element={<Contact />} />
-                    <Route path="catalog" element={<Catalog />} >
-                        <Route path="type" />
-                    </Route>
+                    <Route path="catalog" element={<Catalog />} />
+                    <Route path="signin" element={<Register />} />
                     <Route path="cart" element={<Cart />} />
                     <Route path="profile" element={<ProfileManagement />} />
                     <Route path="*" element={<NotFound />} />

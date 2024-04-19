@@ -52,6 +52,7 @@ function Cart() {
             if (response.ok) {
                 cartData.orderDetails = new Array<Order_Details>(0);
                 setSessionItem(cartData);
+                window.location.reload();
                 alert("Your order was successfully processed");
             }
             else {
