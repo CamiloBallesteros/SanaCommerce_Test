@@ -15,13 +15,15 @@ function Cart() {
 
     useEffect(() => {
         var cartData = getSessionItem() as CartDataModel;
-        if (cartData.orderDetails !== undefined && cartData.orderDetails.length > 0) {
-            setCartList(cartData.orderDetails);
-            var total = cartData.orderDetails.reduce((total, current) => total + current.subtotal, 0);
-            setOrderTotal(total);
+        if (cartData) {
+            if (cartData.orderDetails !== undefined && cartData.orderDetails.length > 0) {
+                setCartList(cartData.orderDetails);
+                var total = cartData.orderDetails.reduce((total, current) => total + current.subtotal, 0);
+                setOrderTotal(total);
+            }
+            if (cartData.customerId !== undefined && cartData.customerId > 0)
+                setLogged(true);
         }
-        if (cartData.customerId !== undefined && cartData.customerId > 0)
-            setLogged(true);
     }, []);
 
     const processOrder = async(e) => {

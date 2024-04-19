@@ -9,8 +9,10 @@ function Home() {
 
     useEffect(() => {
         const cartData = getSessionItem() as CartDataModel;
-        if (cartData.customerId !== undefined && cartData.customerId > 0)
-            setLogged(true);
+        if (cartData) {
+            if (cartData.customerId !== undefined && cartData.customerId > 0)
+                setLogged(true);
+        }
     }, []);
 
     return (

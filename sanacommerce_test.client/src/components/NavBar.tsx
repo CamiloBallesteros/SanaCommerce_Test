@@ -9,12 +9,14 @@ function NavBar() {
     const { setSessionItem, getSessionItem } = useSessionStorage('cartData');
 
     useEffect(() => {
-        const cartData = getSessionItem() as CartDataModel;
-        if (cartData.orderDetails !== undefined && cartData.orderDetails.length > 0)
-            setCartList(true);
+        const cartData = getSessionItem() as CartDataModel; console.log(cartData);
+        if (cartData) {
+            if (cartData.orderDetails !== undefined && cartData.orderDetails.length > 0)
+                setCartList(true);
 
-        if (cartData.customerId !== undefined && cartData.customerId > 0)
-            setLogged(true);
+            if (cartData.customerId !== undefined && cartData.customerId > 0)
+                setLogged(true);
+        }
     }, []);
 
     const LogOut = () => {
